@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Hub — Αυθεντικό Content για Επιχειρήσεις</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Fredoka:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cherry: #E8192C;
+            --cherry-dark: #6B1520;
+            --cherry-light: #FF4D5E;
+            --cream: #FFF5F0;
+            --cream-dark: #FFE8DE;
+            --white: #FFFFFF;
+            --text: #2D1A1E;
+            --text-light: #6B4E55;
+            --radius: 20px;
+            --radius-sm: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ====== NAV ====== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 245, 240, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(232, 25, 44, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 30px rgba(232, 25, 44, 0.08);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--cherry);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span { color: var(--cherry-dark); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--cherry);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--cherry); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: var(--cherry);
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { background: var(--cherry-dark); transform: scale(1.05); }
+
+        /* Mobile menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--cherry-dark);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* ====== HERO ====== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(232,25,44,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(232,25,44,0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--cherry);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            color: var(--cherry-dark);
+            margin-bottom: 8px;
+            animation: slideUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero h1 .cherry-text {
+            color: var(--cherry);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-sub {
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            font-weight: 400;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            animation: slideUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--cherry);
+            color: white;
+            box-shadow: 0 8px 30px rgba(232, 25, 44, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--cherry-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(232, 25, 44, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--cherry);
+            border: 2px solid var(--cherry);
+        }
+
+        .btn-outline:hover {
+            background: var(--cherry);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* ====== SECTIONS COMMON ====== */
+        section {
+            padding: 100px 24px;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(232, 25, 44, 0.08);
+            color: var(--cherry);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--cherry-dark);
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        /* ====== SERVICES ====== */
+        #services { background: var(--white); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--cream);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--cherry);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(232, 25, 44, 0.1);
+        }
+
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--cherry);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--cherry-dark);
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* ====== PORTFOLIO SLIDER ====== */
+        #portfolio { background: var(--cream); }
+
+        .portfolio-slider-wrap {
+            position: relative;
+        }
+
+        .portfolio-slider {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding: 8px 0 24px;
+            scrollbar-width: none;
+        }
+
+        .portfolio-slider::-webkit-scrollbar { display: none; }
+
+        .portfolio-slide {
+            flex: 0 0 320px;
+            min-width: 320px;
+            scroll-snap-align: start;
+            aspect-ratio: 9/16;
+            border-radius: var(--radius);
+            background: var(--cream-dark);
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .portfolio-slide:hover {
+            transform: scale(1.02);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-slide iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: var(--radius);
+        }
+
+        .portfolio-slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .portfolio-nav-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--cream-dark);
+            border: 2px solid rgba(232, 25, 44, 0.2);
+            color: var(--cherry-dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .portfolio-nav-btn:hover {
+            background: var(--cherry);
+            border-color: var(--cherry);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* ====== VIRAL VIDEOS SLIDER ====== */
+        #viral {
+            background: var(--cherry-dark);
+            overflow: hidden;
+        }
+
+        #viral .section-tag {
+            background: rgba(255,255,255,0.15);
+            color: white;
+        }
+
+        #viral .section-title { color: white; }
+        #viral .section-desc { color: rgba(255,255,255,0.6); }
+
+        .viral-slider-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .viral-slider {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding: 8px 0 24px;
+            scrollbar-width: none;
+        }
+
+        .viral-slider::-webkit-scrollbar { display: none; }
+
+        .viral-slide {
+            flex: 0 0 280px;
+            min-width: 280px;
+            scroll-snap-align: start;
+            aspect-ratio: 9/16;
+            border-radius: var(--radius);
+            background: rgba(255,255,255,0.08);
+            border: 2px dashed rgba(255,255,255,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: rgba(255,255,255,0.4);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .viral-slide:hover {
+            border-color: var(--cherry);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .viral-slide .play-icon-lg {
+            width: 72px;
+            height: 72px;
+            background: var(--cherry);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(232,25,44,0.4);
+        }
+
+        .viral-slide .play-icon-lg svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+            margin-left: 4px;
+        }
+
+        .viral-slide span {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Viral slide with actual video embed */
+        .viral-slide.has-video {
+            border: none;
+            padding: 0;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .viral-slide.has-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: var(--radius);
+        }
+
+        .viral-pause-hint {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .viral-pause-hint.visible {
+            opacity: 1;
+        }
+
+        .viral-slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .viral-nav-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .viral-nav-btn:hover {
+            background: var(--cherry);
+            border-color: var(--cherry);
+            transform: scale(1.1);
+        }
+
+        /* ====== ABOUT ====== */
+        #about { background: var(--white); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-photo {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: var(--radius);
+            background: var(--cream-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-photo-placeholder {
+            text-align: center;
+            color: var(--cherry);
+        }
+
+        .about-photo-placeholder svg {
+            width: 80px;
+            height: 80px;
+            fill: var(--cherry);
+            opacity: 0.3;
+            margin-bottom: 12px;
+        }
+
+        .about-photo-placeholder span {
+            font-weight: 700;
+            font-size: 0.9rem;
+            opacity: 0.5;
+        }
+
+        .about-float-badge {
+            position: absolute;
+            bottom: -16px;
+            right: -16px;
+            background: var(--cherry);
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(232, 25, 44, 0.3);
+        }
+
+        .about-text h2 {
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: var(--cherry-dark);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .about-text h2 span { color: var(--cherry); }
+
+        .about-text .lead {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--cherry);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* ====== CONTACT ====== */
+        #contact {
+            background: var(--cherry-dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(232,25,44,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        #contact .section-tag {
+            background: rgba(255,255,255,0.15);
+            color: white;
+        }
+
+        #contact .section-title { color: white; }
+        #contact .section-desc { color: rgba(255,255,255,0.7); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info h3 {
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .contact-info p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .contact-social a {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .contact-social a:hover {
+            background: var(--cherry);
+            transform: scale(1.1);
+        }
+
+        .contact-form-wrap {
+            background: rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            padding: 36px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group.full { grid-column: 1 / -1; }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.35);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--cherry);
+        }
+
+        .form-group select { cursor: pointer; }
+        .form-group select option { background: var(--cherry-dark); color: white; }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.05);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .checkbox-item:hover {
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkbox-item .checkmark {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .checkbox-item .checkmark::after {
+            content: '';
+            display: none;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2.5px 2.5px 0;
+            transform: rotate(45deg);
+            margin-bottom: 2px;
+        }
+
+        .checkbox-item input:checked ~ .checkmark {
+            background: var(--cherry);
+            border-color: var(--cherry);
+        }
+
+        .checkbox-item input:checked ~ .checkmark::after {
+            display: block;
+        }
+
+        .checkbox-item:has(input:checked) {
+            border-color: var(--cherry);
+            background: rgba(232, 25, 44, 0.15);
+            color: white;
+        }
+
+        .form-group textarea { resize: vertical; min-height: 100px; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.1rem;
+            margin-top: 8px;
+            background: var(--cherry);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: var(--cherry-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 25, 44, 0.4);
+        }
+
+        /* ====== SEND MODAL ====== */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(45, 26, 30, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-backdrop.active { display: flex; }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            animation: modalIn 0.4s ease-out;
+            position: relative;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover { background: var(--cream); color: var(--cherry); }
+
+        .modal h3 {
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--cherry-dark);
+            margin-bottom: 8px;
+        }
+
+        .modal p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 28px;
+        }
+
+        .send-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .send-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 20px 16px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--cream-dark);
+            background: var(--cream);
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .send-option:hover {
+            border-color: var(--cherry);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .send-option .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .send-option.whatsapp .icon { background: #25D366; color: white; }
+        .send-option.viber .icon { background: #7360F2; color: white; }
+        .send-option.sms .icon { background: #34C759; color: white; }
+        .send-option.email .icon { background: var(--cherry); color: white; }
+
+        .send-option .label-small {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* ====== FOOTER ====== */
+        footer {
+            background: #1A0A0E;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: var(--cherry); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* ====== CHERRY DECORATIONS ====== */
+        .cherry-deco {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+            user-select: none;
+        }
+
+        .cherry-deco.lg { font-size: 3.5rem; }
+        .cherry-deco.sm { font-size: 1.4rem; }
+        .cherry-deco.md { font-size: 2.2rem; }
+
+        .cherry-deco.spin {
+            animation: cherrySpin 20s linear infinite;
+        }
+
+        @keyframes cherrySpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cherry-deco.bob {
+            animation: cherryBob 5s ease-in-out infinite;
+        }
+
+        @keyframes cherryBob {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(8deg); }
+        }
+
+        /* ====== CHATBOT ====== */
+        .chat-fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 64px;
+            height: 64px;
+            background: var(--cherry);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(232,25,44,0.4);
+            z-index: 1500;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1.6rem;
+        }
+
+        .chat-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(232,25,44,0.5);
+        }
+
+        .chat-fab.open { border-radius: 16px; }
+
+        .chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            width: 360px;
+            max-height: 500px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            z-index: 1500;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: chatIn 0.3s ease-out;
+        }
+
+        .chat-window.open { display: flex; }
+
+        @keyframes chatIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .chat-header {
+            background: var(--cherry);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-header-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .chat-header-text h4 {
+            font-family: 'Fredoka', 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .chat-header-text span {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .chat-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 340px;
+        }
+
+        .chat-msg {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .chat-msg.bot {
+            background: var(--cream);
+            color: var(--text);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-msg.user {
+            background: var(--cherry);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-questions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 0 16px 16px;
+        }
+
+        .chat-q-btn {
+            padding: 8px 14px;
+            border: 2px solid var(--cherry);
+            border-radius: 50px;
+            background: transparent;
+            color: var(--cherry);
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chat-q-btn:hover {
+            background: var(--cherry);
+            color: white;
+        }
+
+        .chat-whatsapp-link {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: var(--cream);
+            border-top: 1px solid var(--cream-dark);
+            color: var(--cherry);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .chat-whatsapp-link:hover {
+            background: var(--cherry);
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .chat-window {
+                right: 12px;
+                left: 12px;
+                width: auto;
+                bottom: 96px;
+            }
+        }
+
+        /* ====== SCROLL ANIMATIONS ====== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-photo { max-height: 400px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+
+            .hamburger { display: flex; }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 2px solid rgba(232, 25, 44, 0.1);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section { padding: 60px 20px; }
+
+            .hero { padding: 100px 20px 60px; min-height: auto; }
+
+            .hero h1 { font-size: 2.6rem; }
+
+            .services-grid { grid-template-columns: 1fr; }
+
+            .portfolio-grid { grid-template-columns: 1fr 1fr; }
+
+            .about-stats { gap: 20px; }
+
+            .send-options { grid-template-columns: 1fr 1fr; }
+
+            .contact-form-wrap { padding: 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--cherry-dark);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Cherry<span>Hub</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services">Υπηρεσίες</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#viral">Viral</a></li>
+                <li><a href="#about">Η Μαρία</a></li>
+                <li><a href="#contact" class="nav-cta">Κλείσε Ραντεβού</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <span class="cherry-deco lg bob" style="top:15%;left:8%;">🍒</span>
+        <span class="cherry-deco sm spin" style="top:25%;right:12%;">🍒</span>
+        <span class="cherry-deco md bob" style="bottom:18%;right:6%;">🍒</span>
+        <div class="hero-content">
+            <div class="hero-badge">🍒 Social Media Content Agency</div>
+            <h1><span class="cherry-text">Cherry</span> Hub</h1>
+            <p class="hero-sub">
+                Αυθεντικό video content που δείχνει<br>
+                την πραγματική εικόνα της επιχείρησής σου.
+            </p>
+            <div class="hero-ctas">
+                <a href="#contact" class="btn btn-primary">Κλείσε Ραντεβού →</a>
+                <a href="#portfolio" class="btn btn-outline">Δες τη Δουλειά μας</a>
+            </div>
+
+            <!-- Maria's photos as floating gallery -->
+            <div class="hero-gallery" style="display:flex; gap:16px; justify-content:center; margin-top:48px; animation: slideUp 0.8s ease-out 0.4s both;">
+                <div style="width:140px; height:180px; border-radius:16px; overflow:hidden; transform:rotate(-3deg); box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <img src="maria-1.jpg" alt="Maria Stevi" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div style="width:140px; height:180px; border-radius:16px; overflow:hidden; transform:rotate(2deg) translateY(-12px); box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <img src="maria-2.jpg" alt="Maria Stevi" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div style="width:140px; height:180px; border-radius:16px; overflow:hidden; transform:rotate(-1deg); box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <img src="maria-3.jpg" alt="Maria Stevi" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" style="position:relative;overflow:hidden;">
+        <span class="cherry-deco sm bob" style="top:60px;right:40px;">🍒</span>
+        <span class="cherry-deco md spin" style="bottom:80px;left:30px;">🍒</span>
+        <div class="section-inner">
+            <span class="section-tag reveal">Τι κάνουμε</span>
+            <h2 class="section-title reveal">Αναλαμβάνουμε <br>τα πάντα για εσένα.</h2>
+            <p class="section-desc reveal">Από την ιδέα μέχρι το post. Εσύ τρέχεις τη δουλειά σου, εμείς τρέχουμε το content σου.</p>
+
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">💡</div>
+                    <h3>Ιδέες & Στρατηγική</h3>
+                    <p>Δημιουργούμε ιδέες για βίντεο προσαρμοσμένες στην επιχείρησή σου, τα trends και το κοινό σου.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">🎬</div>
+                    <h3>Γυρίσματα στον χώρο σου</h3>
+                    <p>Ερχόμαστε στον χώρο σου, γυρίζουμε raw και αυθεντικό content — χωρίς στημένες σκηνές.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">✂️</div>
+                    <h3>Μοντάζ & Editing</h3>
+                    <p>Editing που κρατάει την αυθεντικότητα αλλά κάνει το content να ξεχωρίζει στο feed.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">✍️</div>
+                    <h3>Captions & Copy</h3>
+                    <p>Γράφουμε κείμενα που μιλάνε στο κοινό σου — captions, hooks, CTAs, hashtags.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">📲</div>
+                    <h3>Ανάρτηση & Scheduling</h3>
+                    <p>Ανεβάζουμε εμείς το content στα κανάλια σου — στη σωστή ώρα, με τη σωστή στρατηγική.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">📈</div>
+                    <h3>Performance Marketing</h3>
+                    <p>Διαφημίσεις που φέρνουν αποτελέσματα. Στήνουμε και τρέχουμε campaigns σε Meta & TikTok για να φτάσει το content σου στο σωστό κοινό.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">🖥️</div>
+                    <h3>Landing Pages</h3>
+                    <p>Φτιάχνουμε one-page landing pages που μετατρέπουν τους επισκέπτες σε πελάτες — γρήγορα, καθαρά, αποτελεσματικά.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 48px;" class="reveal">
+                <a href="#contact" class="btn btn-primary">Ζήτησε Προσφορά →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO — Instagram embeds as slider -->
+    <section id="portfolio" style="position:relative;overflow:hidden;">
+        <span class="cherry-deco sm bob" style="bottom:60px;left:5%;">🍒</span>
+        <div class="section-inner">
+            <span class="section-tag reveal">Portfolio</span>
+            <h2 class="section-title reveal">Δες τη δουλειά μας.</h2>
+            <p class="section-desc reveal">Real content, real results. Κάθε video φτιάχτηκε στον χώρο του πελάτη μας.</p>
+
+            <div class="portfolio-slider-wrap reveal">
+                <div class="portfolio-slider" id="portfolioSlider">
+                    <div class="portfolio-slide">
+                        <iframe src="https://www.instagram.com/p/DVi-RAlDF0a/embed/" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy"></iframe>
+                    </div>
+                    <div class="portfolio-slide">
+                        <iframe src="https://www.instagram.com/p/DXPpOOqjpLU/embed/" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy"></iframe>
+                    </div>
+                    <div class="portfolio-slide">
+                        <iframe src="https://www.instagram.com/reel/DVavspkDGrj/embed/" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy"></iframe>
+                    </div>
+                    <div class="portfolio-slide">
+                        <iframe src="https://www.instagram.com/reel/DJoHKiKvx6R/embed/" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy"></iframe>
+                    </div>
+                    <div class="portfolio-slide">
+                        <iframe src="https://www.instagram.com/reel/DT0rbl4jA-w/embed/" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy"></iframe>
+                    </div>
+                    <div class="portfolio-slide">
+                        <iframe src="https://www.instagram.com/reel/DZNcmBqoJNt/embed/" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="portfolio-slider-nav">
+                    <button class="portfolio-nav-btn" id="portfolioPrev">←</button>
+                    <button class="portfolio-nav-btn" id="portfolioNext">→</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIRAL VIDEOS -->
+    <section id="viral">
+        <div class="section-inner">
+            <span class="section-tag reveal">Viral Content</span>
+            <h2 class="section-title reveal">Videos που έγιναν viral.</h2>
+            <p class="section-desc reveal">Αυτά τα videos ξεπέρασαν κάθε προσδοκία. Swipe για να τα δεις.</p>
+
+            <div class="viral-slider-wrap reveal">
+                <div class="viral-slider" id="viralSlider">
+                    <div class="viral-slide has-video">
+                        <iframe src="https://www.tiktok.com/embed/v2/7513110341736303894" allowfullscreen allow="encrypted-media" loading="lazy"></iframe>
+                    </div>
+                    <div class="viral-slide has-video">
+                        <iframe src="https://www.tiktok.com/embed/v2/7452726466061618454" allowfullscreen allow="encrypted-media" loading="lazy"></iframe>
+                    </div>
+                    <div class="viral-slide has-video">
+                        <iframe src="https://www.tiktok.com/embed/v2/7607764397791972630" allowfullscreen allow="encrypted-media" loading="lazy"></iframe>
+                    </div>
+                    <div class="viral-slide has-video">
+                        <iframe src="https://www.tiktok.com/embed/v2/7529512451130297622" allowfullscreen allow="encrypted-media" loading="lazy"></iframe>
+                    </div>
+                    <div class="viral-slide has-video">
+                        <iframe src="https://www.tiktok.com/embed/v2/7618165806777535766" allowfullscreen allow="encrypted-media" loading="lazy"></iframe>
+                    </div>
+                    <div class="viral-slide has-video">
+                        <iframe src="https://www.tiktok.com/embed/v2/7473854624181554454" allowfullscreen allow="encrypted-media" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Pause indicator -->
+                <div class="viral-pause-hint" id="viralPauseHint">⏸ Paused</div>
+
+                <div class="viral-slider-nav">
+                    <button class="viral-nav-btn" id="viralPrev">←</button>
+                    <button class="viral-nav-btn" id="viralNext">→</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" style="position:relative;overflow:hidden;">
+        <span class="cherry-deco lg bob" style="top:40px;right:50px;">🍒</span>
+        <span class="cherry-deco sm spin" style="bottom:100px;left:4%;">🍒</span>
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-photo reveal">
+                    <!-- MAIN PHOTO: Replace maria-3.jpg with Maria's photo -->
+                    <img src="maria-3.jpg" alt="Μαρία Στεβή — Cherry Hub" style="width:100%;height:100%;object-fit:cover;">
+                    <div class="about-float-badge">🍒 Content Creator</div>
+                </div>
+                <div class="about-text reveal">
+                    <span class="section-tag">Η Μαρία</span>
+                    <h2>Γεια, είμαι η <span>Μαρία Στεβή</span>.</h2>
+                    <p class="lead">
+                        25 χρονών, content creator και η ψυχή πίσω από το Cherry Hub.
+                    </p>
+                    <p>
+                        Πιστεύω πως το καλύτερο content δεν είναι το στημένο. Είναι αυτό που δείχνει αλήθεια — τους ανθρώπους πίσω από μια επιχείρηση, τη διαδικασία, την ενέργεια του χώρου.
+                    </p>
+                    <p>
+                        Δουλεύω με επιχειρήσεις που θέλουν να δείξουν ποιες πραγματικά είναι. Χωρίς φίλτρα, χωρίς υπερβολές — μόνο αυθεντικό, raw περιεχόμενο που χτίζει εμπιστοσύνη.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Videos Created</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">20+</div>
+                            <div class="stat-label">Happy Clients</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Αυθεντικό</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="position:relative;">
+        <span class="cherry-deco md bob" style="top:50px;left:5%;opacity:0.08;">🍒</span>
+        <span class="cherry-deco sm spin" style="bottom:80px;right:8%;opacity:0.08;">🍒</span>
+        <div class="section-inner">
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <span class="section-tag">Επικοινωνία</span>
+                    <h2 class="section-title" style="color:white;">Πάμε να φτιάξουμε<br>κάτι μαζί.</h2>
+                    <p>Συμπλήρωσε τη φόρμα και θα επικοινωνήσουμε μαζί σου. Ή βρες μας στα social!</p>
+
+                    <div class="contact-details" style="margin-bottom:32px;">
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+                            <span style="font-size:1.3rem;">📧</span>
+                            <a href="mailto:digitalcontentbyms@gmail.com" style="color:rgba(255,255,255,0.8);text-decoration:none;font-weight:600;">digitalcontentbyms@gmail.com</a>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+                            <span style="font-size:1.3rem;">📱</span>
+                            <a href="tel:+306981802596" style="color:rgba(255,255,255,0.8);text-decoration:none;font-weight:600;">698 180 2596</a>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:12px;">
+                            <span style="font-size:1.3rem;">🌐</span>
+                            <span style="color:rgba(255,255,255,0.6);font-weight:600;">Μόνο online — δεν διαθέτουμε φυσικό κατάστημα</span>
+                        </div>
+                    </div>
+
+                    <h3>Ακολούθησέ μας</h3>
+                    <div class="contact-social">
+                        <a href="https://www.instagram.com/_cherryhub_" target="_blank" title="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrap reveal">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Όνομα *</label>
+                                <input type="text" id="fname" placeholder="π.χ. Γιάννης" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Επώνυμο *</label>
+                                <input type="text" id="lname" placeholder="π.χ. Παπαδόπουλος" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Τηλέφωνο *</label>
+                                <input type="tel" id="phone" placeholder="69xxxxxxxx" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" id="email" placeholder="email@example.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Υπηρεσίες (επίλεξε όσα θέλεις)</label>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="services" value="Social Media Management">
+                                    <span class="checkmark"></span>
+                                    Social Media Management
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="services" value="Content Creation">
+                                    <span class="checkmark"></span>
+                                    Content Creation
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="services" value="Δημιουργία Video Content">
+                                    <span class="checkmark"></span>
+                                    Δημιουργία Video Content
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="services" value="Content Strategy">
+                                    <span class="checkmark"></span>
+                                    Content Strategy
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="services" value="Ολοκληρωμένο Πακέτο">
+                                    <span class="checkmark"></span>
+                                    Ολοκληρωμένο Πακέτο
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="services" value="Δημιουργία Landing Page">
+                                    <span class="checkmark"></span>
+                                    Δημιουργία Landing Page
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="services" value="Performance">
+                                    <span class="checkmark"></span>
+                                    Performance
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Μήνυμα</label>
+                            <textarea id="message" placeholder="Πες μας λίγα λόγια για την επιχείρησή σου..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">🍒 Κλείσε Ραντεβού</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEND MODAL -->
+    <div class="modal-backdrop" id="sendModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">✕</button>
+            <h3>Πώς θέλεις να στείλεις;</h3>
+            <p>Επίλεξε τον τρόπο που σε βολεύει — τα στοιχεία σου είναι ήδη έτοιμα!</p>
+            <div class="send-options">
+                <a class="send-option whatsapp" id="sendWhatsApp" target="_blank">
+                    <div class="icon">💬</div>
+                    <strong>WhatsApp</strong>
+                    <span class="label-small">Άμεσο μήνυμα</span>
+                </a>
+                <a class="send-option viber" id="sendViber" target="_blank">
+                    <div class="icon">📱</div>
+                    <strong>Viber</strong>
+                    <span class="label-small">Άμεσο μήνυμα</span>
+                </a>
+                <a class="send-option sms" id="sendSMS" target="_blank">
+                    <div class="icon">✉️</div>
+                    <strong>SMS</strong>
+                    <span class="label-small">Μήνυμα κινητού</span>
+                </a>
+                <button class="send-option email" id="sendEmail">
+                    <div class="icon">📧</div>
+                    <strong>Email</strong>
+                    <span class="label-small">Αποστολή email</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">✅ Το μήνυμά σου στάλθηκε!</div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Cherry Hub — Με ❤️ από τη <a href="https://www.instagram.com/_cherryhub_" target="_blank">Μαρία Στεβή</a></p>
+    </footer>
+
+    <!-- CHATBOT -->
+    <button class="chat-fab" id="chatFab" aria-label="Chat">🍒</button>
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <div class="chat-header-avatar">🍒</div>
+            <div class="chat-header-text">
+                <h4>Cherry Hub Bot</h4>
+                <span>Ρώτα μας ό,τι θέλεις!</span>
+            </div>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-msg bot">Γεια σου! 👋 Είμαι η Cherry, η βοηθός του Cherry Hub. Τι θα ήθελες να μάθεις;</div>
+        </div>
+        <div class="chat-questions" id="chatQuestions"></div>
+        <a href="https://wa.me/306981802596?text=%CE%93%CE%B5%CE%B9%CE%B1!%20%CE%98%CE%AD%CE%BB%CF%89%20%CE%BD%CE%B1%20%CE%BC%CE%AC%CE%B8%CF%89%20%CF%80%CE%B5%CF%81%CE%B9%CF%83%CF%83%CF%8C%CF%84%CE%B5%CF%81%CE%B1%20%CE%B3%CE%B9%CE%B1%20%CF%84%CE%BF%20Cherry%20Hub!" class="chat-whatsapp-link" target="_blank">💬 Μίλα μας στο WhatsApp</a>
+    </div>
+
+    <script>
+        // === NAV SCROLL ===
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // === HAMBURGER ===
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('open'));
+        });
+
+        // === SCROLL REVEAL ===
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // === PORTFOLIO SLIDER NAV ===
+        const portfolioSlider = document.getElementById('portfolioSlider');
+        const pSlideWidth = 340; // 320 + 20 gap
+
+        document.getElementById('portfolioPrev').addEventListener('click', () => {
+            portfolioSlider.scrollBy({ left: -pSlideWidth, behavior: 'smooth' });
+        });
+        document.getElementById('portfolioNext').addEventListener('click', () => {
+            portfolioSlider.scrollBy({ left: pSlideWidth, behavior: 'smooth' });
+        });
+
+        // === VIRAL SLIDER — AUTO-SLIDE + PAUSE ===
+        const viralSlider = document.getElementById('viralSlider');
+        const viralPauseHint = document.getElementById('viralPauseHint');
+        const slideWidth = 300; // 280 + 20 gap
+        let viralAutoPlay = null;
+        let viralPaused = false;
+
+        function startViralAutoPlay() {
+            stopViralAutoPlay();
+            viralAutoPlay = setInterval(() => {
+                // If near the end, loop back to start
+                if (viralSlider.scrollLeft + viralSlider.clientWidth >= viralSlider.scrollWidth - 20) {
+                    viralSlider.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    viralSlider.scrollBy({ left: slideWidth, behavior: 'smooth' });
+                }
+            }, 3500);
+        }
+
+        function stopViralAutoPlay() {
+            if (viralAutoPlay) {
+                clearInterval(viralAutoPlay);
+                viralAutoPlay = null;
+            }
+        }
+
+        function pauseSlider() {
+            viralPaused = true;
+            stopViralAutoPlay();
+            viralPauseHint.classList.add('visible');
+        }
+
+        function resumeSlider() {
+            viralPaused = false;
+            viralPauseHint.classList.remove('visible');
+            startViralAutoPlay();
+        }
+
+        // Pause on hover
+        viralSlider.addEventListener('mouseenter', pauseSlider);
+        viralSlider.addEventListener('mouseleave', resumeSlider);
+
+        // Pause on touch/drag
+        viralSlider.addEventListener('touchstart', pauseSlider, { passive: true });
+        viralSlider.addEventListener('touchend', () => {
+            setTimeout(resumeSlider, 4000); // Resume after 4s of no touch
+        });
+
+        // Manual nav pauses briefly then resumes
+        document.getElementById('viralPrev').addEventListener('click', () => {
+            pauseSlider();
+            viralSlider.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+            setTimeout(resumeSlider, 5000);
+        });
+        document.getElementById('viralNext').addEventListener('click', () => {
+            pauseSlider();
+            viralSlider.scrollBy({ left: slideWidth, behavior: 'smooth' });
+            setTimeout(resumeSlider, 5000);
+        });
+
+        // Start auto-play when section comes into view
+        const viralSection = document.getElementById('viral');
+        const viralObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !viralPaused) {
+                    startViralAutoPlay();
+                } else {
+                    stopViralAutoPlay();
+                }
+            });
+        }, { threshold: 0.3 });
+        viralObserver.observe(viralSection);
+
+        // === CONTACT FORM & MODAL ===
+        const PHONE = '306981802596'; // Greek format for WhatsApp
+        const PHONE_LOCAL = '6981802596';
+        const EMAIL_TO = 'digitalcontentbyms@gmail.com';
+
+        const contactForm = document.getElementById('contactForm');
+        const sendModal = document.getElementById('sendModal');
+        const modalClose = document.getElementById('modalClose');
+        const toast = document.getElementById('toast');
+
+        let formData = {};
+
+        function getFormMessage() {
+            return `🍒 Νέο Ραντεβού — Cherry Hub\n\nΌνομα: ${formData.fname} ${formData.lname}\nΤηλέφωνο: ${formData.phone}\nEmail: ${formData.email}\nΥπηρεσία: ${formData.service || '-'}\nΜήνυμα: ${formData.message || '-'}`;
+        }
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Collect checked services
+            const checkedServices = [...document.querySelectorAll('input[name="services"]:checked')]
+                .map(cb => cb.value).join(', ');
+
+            formData = {
+                fname: document.getElementById('fname').value,
+                lname: document.getElementById('lname').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                service: checkedServices || '-',
+                message: document.getElementById('message').value,
+            };
+
+            // Build links
+            const msg = getFormMessage();
+            const encoded = encodeURIComponent(msg);
+
+            // WhatsApp
+            document.getElementById('sendWhatsApp').href = `https://wa.me/${PHONE}?text=${encoded}`;
+
+            // Viber
+            document.getElementById('sendViber').href = `viber://chat?number=%2B${PHONE}&text=${encoded}`;
+
+            // SMS
+            document.getElementById('sendSMS').href = `sms:${PHONE_LOCAL}?body=${encoded}`;
+
+            // Show modal
+            sendModal.classList.add('active');
+        });
+
+        // Email button — direct send via Web3Forms (ΔΩΡΕΑΝ, χωρίς backend)
+        // SETUP (1 λεπτό):
+        // 1. Πήγαινε στο https://web3forms.com/
+        // 2. Βάλε το email: digitalcontentbyms@gmail.com
+        // 3. Θα σου στείλει ένα Access Key στο email
+        // 4. Αντικατέστησε το 'YOUR_ACCESS_KEY' παρακάτω με αυτό το key
+        const WEB3FORMS_KEY = '2880f317-a0f9-4a53-aa77-5dbab82e7a00';
+
+        document.getElementById('sendEmail').addEventListener('click', () => {
+            const btn = document.getElementById('sendEmail');
+
+            if (WEB3FORMS_KEY === 'YOUR_ACCESS_KEY') {
+                alert('⚠️ Πρέπει να πάρεις Access Key από το web3forms.com πρώτα!\n\n1. Πήγαινε στο web3forms.com\n2. Βάλε το email σου\n3. Πάρε το key από το email σου\n4. Βάλτο στον κώδικα');
+                return;
+            }
+
+            btn.textContent = 'Αποστολή...';
+            btn.style.opacity = '0.6';
+            btn.style.pointerEvents = 'none';
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    access_key: WEB3FORMS_KEY,
+                    subject: `Νέο ραντεβού — ${formData.fname} ${formData.lname}`,
+                    from_name: formData.fname + ' ' + formData.lname,
+                    phone: formData.phone,
+                    email: formData.email,
+                    services: formData.service,
+                    message: formData.message
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                btn.textContent = '📧 Email';
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+                if (data.success) {
+                    showToast();
+                    closeModal();
+                    contactForm.reset();
+                } else {
+                    alert('Κάτι πήγε στραβά. Δοκίμασε WhatsApp!');
+                }
+            })
+            .catch(() => {
+                btn.textContent = '📧 Email';
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+                alert('Κάτι πήγε στραβά. Δοκίμασε WhatsApp!');
+            });
+        });
+
+        function closeModal() {
+            sendModal.classList.remove('active');
+        }
+
+        function showToast() {
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        sendModal.addEventListener('click', (e) => {
+            if (e.target === sendModal) closeModal();
+        });
+
+        // Close modal after WhatsApp/Viber/SMS click
+        ['sendWhatsApp', 'sendViber', 'sendSMS'].forEach(id => {
+            document.getElementById(id).addEventListener('click', () => {
+                setTimeout(() => {
+                    showToast();
+                    closeModal();
+                }, 500);
+            });
+        });
+
+        // === CHATBOT ===
+        const chatFab = document.getElementById('chatFab');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatBody = document.getElementById('chatBody');
+        const chatQuestions = document.getElementById('chatQuestions');
+
+        const qaData = [
+            { q: 'Τι υπηρεσίες προσφέρετε;', a: 'Αναλαμβάνουμε Social Media Management, Content Creation, Video Content, Content Strategy, Landing Pages, Performance Marketing και Ολοκληρωμένα Πακέτα! 🍒' },
+            { q: 'Πόσο κοστίζει;', a: 'Κάθε project είναι μοναδικό, γι\' αυτό οι τιμές εξαρτώνται από τις ανάγκες σου. Στείλε μας μήνυμα για δωρεάν προσφορά! 💬' },
+            { q: 'Πώς μπορώ να κλείσω ραντεβού;', a: 'Πολύ εύκολα! Συμπλήρωσε τη φόρμα επικοινωνίας πιο κάτω, ή στείλε μας μήνυμα στο WhatsApp στο 698 180 2596. 📱' },
+            { q: 'Πού βρίσκεστε;', a: 'Δουλεύουμε 100% online — δεν έχουμε φυσικό κατάστημα. Εξυπηρετούμε πελάτες σε όλη την Ελλάδα! 🌍' },
+            { q: 'Τι είδους video φτιάχνετε;', a: 'Δημιουργούμε αυθεντικό video content — UGC, Reels, TikToks, product videos, behind-the-scenes, και testimonials. Τίποτα generic! 🎬' },
+            { q: 'Πόσο χρόνο χρειάζεται;', a: 'Εξαρτάται από το project. Συνήθως ξεκινάμε μέσα σε 1-2 εβδομάδες από την επιβεβαίωση. Για κάτι urgent, πες μας! ⚡' },
+            { q: 'Μπορώ να δω δείγματα δουλειάς;', a: 'Φυσικά! Κοίτα τη δουλειά μας πιο πάνω στο Portfolio, ή επισκέψου μας στο Instagram @_cherryhub_ 📸' }
+        ];
+
+        let currentQuestions = [];
+
+        function showQuestions(exclude = []) {
+            chatQuestions.innerHTML = '';
+            const available = qaData.filter((_, i) => !exclude.includes(i));
+            currentQuestions = available.slice(0, 4);
+            currentQuestions.forEach((item) => {
+                const btn = document.createElement('button');
+                btn.className = 'chat-q-btn';
+                btn.textContent = item.q;
+                btn.addEventListener('click', () => handleQuestion(item));
+                chatQuestions.appendChild(btn);
+            });
+        }
+
+        function handleQuestion(item) {
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-msg user';
+            userMsg.textContent = item.q;
+            chatBody.appendChild(userMsg);
+
+            // Add bot reply with typing delay
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chat-msg bot';
+                botMsg.textContent = item.a;
+                chatBody.appendChild(botMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
+
+                // Show next set of questions
+                const idx = qaData.indexOf(item);
+                const asked = [...document.querySelectorAll('.chat-msg.user')].map(m => m.textContent);
+                const usedIndices = qaData.map((q, i) => asked.includes(q.q) ? i : -1).filter(i => i >= 0);
+                showQuestions(usedIndices);
+            }, 600);
+
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        chatFab.addEventListener('click', () => {
+            const isOpen = chatWindow.classList.toggle('open');
+            chatFab.classList.toggle('open', isOpen);
+            chatFab.textContent = isOpen ? '✕' : '🍒';
+            if (isOpen && chatQuestions.children.length === 0) {
+                showQuestions();
+            }
+        });
+    </script>
+
+</body>
+</html>
